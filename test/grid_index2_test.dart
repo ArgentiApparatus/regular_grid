@@ -1,4 +1,4 @@
-part of lib_x_test;
+part of regular_grid_test;
 
 class Bomb {
   double x = 3.3;

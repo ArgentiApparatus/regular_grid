@@ -1,4 +1,4 @@
-part of grid_coord;
+part of regular_grid;
 
 typedef int Convert(num);
 
