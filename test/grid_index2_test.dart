@@ -172,7 +172,7 @@ void grid_index2_tests() {
       expect(f.x, equals(-21));
       expect(f.y, equals(27));
     });
-    test('distance to', () {
+    test('Distance to', () {
       g = new GridCoord2(-7, 9);
       f = new GridCoord2(11, -13);
       expect(g.distanceTo(f), equals(sqrt(808)));
