@@ -1,0 +1,11 @@
+name: regular_grid
+version: 0.0.0
+author: Argenti Apparatus <argentiapparatus@gmail.com>
+description: A regular grid library.
+homepage: https://github.com/argentiapparatus/regular_grid
+environment:
+  sdk: '>=1.5.0'
+dependencies:
+  vector_math: '>=1.4.0 <2.0.0'
+dev_dependencies:
+  unittest: '>=0.10.0 <1.0.0'
