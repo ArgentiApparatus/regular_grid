@@ -8,7 +8,7 @@ A regular grid library.
 
 * 2D regular grid index.
 
-## Libraries using vector_math
+## Libraries using regular_grid
 
 * None as of yet
 
