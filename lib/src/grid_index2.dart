@@ -78,28 +78,31 @@ class GridCoord2 implements Math.Point<int> {
   /// Scale.
   GridCoord2 operator*(int scale) => new GridCoord2(x*scale, y*scale);
 
-  /// Negate.
+  /// Equality.
+  bool operator==(Math.Point<int> other) => x==other.x && y==other.y;
+
+  /// Negate [this].
   void negate() {
     y = -y;
     x = -x;
   }
 
-  /// Add [arg] to [this].
-  void add(Math.Point<int> arg) {
-    x += arg.x;
-    y += arg.y;
+  /// Add [other] to [this].
+  void add(Math.Point<int> other) {
+    x += other.x;
+    y += other.y;
   }
 
-  /// Subtract [arg] from [this].
-  void sub(Math.Point<int> arg) {
-    x -= arg.x;
-    y -= arg.y;
+  /// Subtract [other] from [this].
+  void sub(Math.Point<int> other) {
+    x -= other.x;
+    y -= other.y;
   }
 
-  /// Multiply entries in [this] with corresponding entries in [arg].
-  void multiplyElements(Math.Point<int> arg) {
-    x *= arg.x;
-    y *= arg.y;
+  /// Multiply entries in [this] with corresponding entries in [other].
+  void multiplyElements(Math.Point<int> other) {
+    x *= other.x;
+    y *= other.y;
   }
 
   /// Absolute value.
@@ -109,25 +112,25 @@ class GridCoord2 implements Math.Point<int> {
   }
 
   /// Scale [this].
-  void scale(int arg) {
-    y *= arg;
-    x *= arg;
+  void scale(int scale) {
+    y *= scale;
+    x *= scale;
   }
 
-  /// Return copy of [this] scaled by [scale]]
+  /// Return copy of [this] scaled by [scale]
   GridCoord2 scaled(int scale) => new GridCoord2(x*scale, y*scale);
 
-  /// Distance from [this] to [arg]
-  double distanceTo(GridCoord2 arg) => (new GridCoord2.copy(this)..sub(arg)).length;
+  /// Distance from [this] to [other]
+  double distanceTo(Math.Point<int> other) => (new GridCoord2.copy(this)..sub(other)).length;
 
-  /// Squared distance from [this] to [arg]
-  int squaredDistanceTo(GridCoord2 arg) => (new GridCoord2.copy(this)..sub(arg)).squaredLength;
+  /// Squared distance from [this] to [other]
+  int squaredDistanceTo(Math.Point<int> other) => (new GridCoord2.copy(this)..sub(other)).squaredLength;
 
-  /// Copy [this] into [arg], return [arg].
-  GridCoord2 copyInto(GridCoord2 arg) {
-    arg.y = y;
-    arg.x = x;
-    return arg;
+  /// Copy [this] into [other], return [other].
+  GridCoord2 copyInto(GridCoord2 other) {
+    other.y = y;
+    other.x = x;
+    return other;
   }
 
   /// Length.
@@ -144,4 +147,6 @@ class GridCoord2 implements Math.Point<int> {
 
   /// True if either [x] or [y] are not zero.
   bool get isNotZero => x!=0 || y!=0;
+
+  int get hashCode => hash2(x, y);
 }

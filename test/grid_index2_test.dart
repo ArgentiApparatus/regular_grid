@@ -168,7 +168,7 @@ void grid_index2_tests() {
     test('Scaled copy', () {
       g = new GridCoord2(-7, 9);
       f = g.scaled(3);
-      expect(identical(g, f), isFalse);
+      expect(f, isNot(same(g)));
       expect(f.x, equals(-21));
       expect(f.y, equals(27));
     });
@@ -208,6 +208,22 @@ void grid_index2_tests() {
       g = new GridCoord2(-7, 9);
       expect(g.isZero, isFalse);
       expect(g.isNotZero, isTrue);
+    });
+  });
+
+  group('Equals and hashCode:', () {
+
+    test('Equal', () {
+      g = new GridCoord2(-7, 9);
+      f = new GridCoord2(-7, 9);
+      expect(g, equals(f));
+      expect(g.hashCode, equals(f.hashCode));
+    });
+    test('Not equal', () {
+      g = new GridCoord2(-7, 9);
+      f = new GridCoord2(16, 32);
+      expect(g, isNot(equals(f)));
+      expect(g.hashCode, isNot(equals(f.hashCode)));
     });
   });
 }
