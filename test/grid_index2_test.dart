@@ -5,6 +5,10 @@ class Bomb {
   String y = 'y';
 }
 
+class Grenade {
+  double x = 3.3;
+}
+
 void grid_index2_tests() {
 
   GridCoord2 g, f;
@@ -58,6 +62,10 @@ void grid_index2_tests() {
       expect(() { new GridCoord2.fromDynamic(new Bomb(), floor);    }, throws);
       expect(() { new GridCoord2.fromDynamic(new Bomb(), ceil);     }, throws);
       expect(() { new GridCoord2.fromDynamic(new Bomb(), round);    }, throws);
+      expect(() { new GridCoord2.fromDynamic(new Grenade(), truncate); }, throws);
+      expect(() { new GridCoord2.fromDynamic(new Grenade(), floor);    }, throws);
+      expect(() { new GridCoord2.fromDynamic(new Grenade(), ceil);     }, throws);
+      expect(() { new GridCoord2.fromDynamic(new Grenade(), round);    }, throws);
     });
   });
 
@@ -106,6 +114,10 @@ void grid_index2_tests() {
       expect(() { g.setFromDynamic(new Bomb(), floor);    }, throws);
       expect(() { g.setFromDynamic(new Bomb(), ceil);     }, throws);
       expect(() { g.setFromDynamic(new Bomb(), round);    }, throws);
+      expect(() { g.setFromDynamic(new Grenade(), truncate); }, throws);
+      expect(() { g.setFromDynamic(new Grenade(), floor);    }, throws);
+      expect(() { g.setFromDynamic(new Grenade(), ceil);     }, throws);
+      expect(() { g.setFromDynamic(new Grenade(), round);    }, throws);
     });
   });
 
@@ -216,6 +228,7 @@ void grid_index2_tests() {
     test('Equal', () {
       g = new GridCoord2(-7, 9);
       f = new GridCoord2(-7, 9);
+      expect(g, equals(g));
       expect(g, equals(f));
       expect(g.hashCode, equals(f.hashCode));
     });
@@ -224,6 +237,13 @@ void grid_index2_tests() {
       f = new GridCoord2(16, 32);
       expect(g, isNot(equals(f)));
       expect(g.hashCode, isNot(equals(f.hashCode)));
+    });
+    test('Something', () {
+      Point<int> p = new Point<int>(-7, 9);
+      Point<int> q = new Point<int>(-7, 9);
+      g = new GridCoord2(-7, 9);
+      expect(g, equals(p));
+      expect(p, equals(g));
     });
   });
 }

@@ -79,7 +79,7 @@ class GridCoord2 implements Math.Point<int> {
   GridCoord2 operator*(int scale) => new GridCoord2(x*scale, y*scale);
 
   /// Equality.
-  bool operator==(Math.Point<int> other) => x==other.x && y==other.y;
+  bool operator==(Math.Point<int> other) => identical(this, other) || (x==other.x && y==other.y);
 
   /// Negate [this].
   void negate() {
