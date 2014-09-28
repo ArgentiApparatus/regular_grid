@@ -1,11 +1,11 @@
 name: regular_grid
-version: 0.0.2
+version: 0.1.0
 author: Gary Smith <argentiapparatus@gmail.com>
 description: A small utility library for working with regular rectilinear grids.
 homepage: https://github.com/argentiapparatus/regular_grid
 environment:
-  sdk: '>=1.5.0'
+  sdk: '>=1.0.0'
 dependencies:
-  quiver: '>=0.18.0 <1.0.0'
+  quiver: 0.14.0
 dev_dependencies:
-  unittest: '>=0.10.0 <1.0.0'
+  unittest: '>=0.10.0'

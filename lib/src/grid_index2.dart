@@ -1,34 +1,36 @@
-part of regular_grid;
+part of regular_grid2;
 
 typedef int Convert(num);
 
-int truncate(num a) => a.truncate();
 int floor(num a) => a.floor();
 int ceil(num a) => a.ceil();
 int round(num a) => a.round();
 
-
-class GridCoord2 implements Math.Point<int> {
+/// 2D regular grid index.
+///
+/// In the interests of efficiency, no constructors, setters or methods check for `null` values passed as arguments.
+/// If `null` values are passed, the results are undefined.
+class GridIndex2 implements Math.Point<int> {
 
   int x;
   int y;
 
   /// Construct a new grid coord with the specified values.
-  GridCoord2(this.x, this.y);
+  GridIndex2(this.x, this.y);
 
   /// Zero grid coord.
-  GridCoord2.zero(): x=0, y=0;
+  GridIndex2.zero(): x=0, y=0;
 
   /// Splat [value] into all values of [this].
-  GridCoord2.all(int value): x=value, y=value;
+  GridIndex2.all(int value): x=value, y=value;
 
   /// Copy of [other].
-  GridCoord2.copy(Math.Point<int> other): x=other.x, y=other.y;
+  GridIndex2.copy(Math.Point<int> other): x=other.x, y=other.y;
 
-  /// Construct from [thing] that has type `num` `x` and `y` members converting values with function [convert].
+  /// Construct from object [thing] that has properties `x` and `y` of type `num`, converting their values with function [convert].
   ///
-  /// If either `x` or `y` of [thing] are not of type `num`, an exception will be thrown.
-  GridCoord2.fromDynamic(dynamic thing, Convert convert): x=convert(thing.x), y=convert(thing.y);
+  /// If either property `x` or `y` of object [thing] is not of type `num`, the results are undefined.
+  GridIndex2.fromDynamic(dynamic thing, Convert convert): x=convert(thing.x), y=convert(thing.y);
 
   /// Set the values of [this].
   void setValues(int x, int y) {
@@ -67,16 +69,16 @@ class GridCoord2 implements Math.Point<int> {
   String toString() => '[${x},${y}]';
 
   /// Negate.
-  GridCoord2 operator-() => new GridCoord2(-x, -y);
+  GridIndex2 operator-() => new GridIndex2(-x, -y);
 
   /// Add two grid coords.
-  GridCoord2 operator+(Math.Point<int> other) => new GridCoord2(x+other.x, y+other.y);
+  GridIndex2 operator+(Math.Point<int> other) => new GridIndex2(x+other.x, y+other.y);
 
   /// Subtract two grid coords.
-  GridCoord2 operator-(Math.Point<int> other) => new GridCoord2(x-other.x, y-other.y);
+  GridIndex2 operator-(Math.Point<int> other) => new GridIndex2(x-other.x, y-other.y);
 
   /// Scale.
-  GridCoord2 operator*(int scale) => new GridCoord2(x*scale, y*scale);
+  GridIndex2 operator*(int scale) => new GridIndex2(x*scale, y*scale);
 
   /// Equality.
   bool operator==(Math.Point<int> other) => identical(this, other) || (x==other.x && y==other.y);
@@ -118,16 +120,16 @@ class GridCoord2 implements Math.Point<int> {
   }
 
   /// Return copy of [this] scaled by [scale]
-  GridCoord2 scaled(int scale) => new GridCoord2(x*scale, y*scale);
+  GridIndex2 scaled(int scale) => new GridIndex2(x*scale, y*scale);
 
   /// Distance from [this] to [other]
-  double distanceTo(Math.Point<int> other) => (new GridCoord2.copy(this)..sub(other)).length;
+  double distanceTo(Math.Point<int> other) => (new GridIndex2.copy(this)..sub(other)).length;
 
   /// Squared distance from [this] to [other]
-  int squaredDistanceTo(Math.Point<int> other) => (new GridCoord2.copy(this)..sub(other)).squaredLength;
+  int squaredDistanceTo(Math.Point<int> other) => (new GridIndex2.copy(this)..sub(other)).squaredLength;
 
   /// Copy [this] into [other], return [other].
-  GridCoord2 copyInto(GridCoord2 other) {
+  GridIndex2 copyInto(GridIndex2 other) {
     other.y = y;
     other.x = x;
     return other;
