@@ -22,13 +22,6 @@ void grid_index2_tests() {
 
   GridIndex2 g, f;
 
-  group('BLARP:', () {
-    test('BLURP', () {
-      g = new GridIndex2(-7, 9);
-      expect(g, indexIs(-7, 9));
-    });
-  });
-
   group('GridIndex2::', () {
 
     group('Constructors:', () {
